@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/wloche/jira-tools#readme",
   "dependencies": {
+    "moment": "^2.25.3",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
   }
