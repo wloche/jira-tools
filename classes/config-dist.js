@@ -1,7 +1,5 @@
 /**
- * Jira configuration
- *
- * This file has to be copied and rename as `config.js` and updated accordingly.
+ * Jira Tools-Config
  *
  * @licence Wilfried Loche <wilfried.wl.loche@gmail.com>
  * @license GPL-3.0-or-later
@@ -12,7 +10,8 @@ const Config = {
     /* ###### Parameters to be updated ###### */
     USER: '##USER##',
     PASSWORD: '##PASSWORD##',
-    BASE_URL: 'https://##your-jira-server##/jira/rest/api/2/',
+    DOMAIN_NAME: 'https://##your-jira-server##',
+    BASE_URL_REST_V2: '/jira/rest/api/2/',
 
     async: false,
     useSecuredJira: true,
@@ -31,11 +30,9 @@ const Config = {
 
     jira: {
         customFieldStoryPoints: 'customfield_10006',
-        secure: {
-            'pointsUrl':  "https://##your-jira-server##/jira/rest/agile/1.0/issue/%jiraId%?fields=customfield_10006,issuetype",
-            'sprintsUrl': "https://##your-jira-server##/jira/rest/agile/1.0/board/%boardId%/sprint?startAt=%startAt%",
-        },
-        scoreChangelUrl: '##your-jira-server##/jira/rest/greenhopper/1.0/rapid/charts/scopechangeburndownchart?rapidViewId=%boardId%&sprintId=%sprintId%',
+        pointsUrl:  "/jira/rest/agile/1.0/issue/%jiraId%?fields=%customFieldStoryPoints%,issuetype",
+        sprintsUrl: "/jira/rest/agile/1.0/board/%boardId%/sprint?startAt=%startAt%",
+        scoreChangelUrl: '/jira/rest/greenhopper/1.0/rapid/charts/scopechangeburndownchart?rapidViewId=%boardId%&sprintId=%sprintId%',
     },
     /* ###### End of parameters section ###### */
 
@@ -58,27 +55,16 @@ const Config = {
     },
 
     getPointsUrl() {
-        if (Config.useSecuredJira) {
-            return Config.jira.secure.pointsUrl;
-        } else {
-            return Config.jira.unSecure.pointsUrl;
-        }
+        return Config.DOMAIN_NAME
+            + Config.jira.pointsUrl.replace("%customFieldStoryPoints%", Config.jira.customFieldStoryPoints);
     },
 
     getSprintsUrl() {
-        if (Config.useSecuredJira) {
-            return Config.jira.secure.sprintsUrl;
-        } else {
-            return Config.jira.unSecure.sprintsUrl;
-        }
+        return Config.DOMAIN_NAME + Config.jira.sprintsUrl;
     },
 
     getJqlUrl() {
-        if (Config.useSecuredJira) {
-            return Config.jira.secure.jql;
-        } else {
-            return Config.jira.unSecure.jql;
-        }
+        return Config.DOMAIN_NAME + Config.jira.jql;
     },
 
     constructJqlUrl(structure, jiraId, startAt = 0) {
@@ -92,11 +78,7 @@ const Config = {
     },
 
     getScoreChangelUrl() {
-        if (Config.useSecuredJira) {
-            return 'https://' + Config.jira.scoreChangelUrl;
-        } else {
-            return 'http://' + Config.jira.scoreChangelUrl;
-        }
+        return Config.DOMAIN_NAME + Config.jira.scoreChangelUrl;
     },
 
     constructScoreChangelUrl(boardId, sprintId) {

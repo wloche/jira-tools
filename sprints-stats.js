@@ -9,12 +9,9 @@
 // var requestPromise = require('request-promise');
 
 
-const teams = [ ];
-// const teams = [ 'Kraftwerk' ];
+// const teams = [ ];
+const teams = [ 'Kraftwerk' ];
 // teams = [ '99 Luftballons' ];
-// teams = [ 'Lambda' ];
-// teams = [ 'Lambda', 'Apollo' ];
-// teams = [ 'Orion', 'Gemini' ];
 
 const fs = require('fs')
 

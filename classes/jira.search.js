@@ -19,7 +19,7 @@ class JiraSearch {
     static getUrl(jql, jiraId) {
         const regex = /jiraId/gi;
         let url =
-            Config.BASE_URL
+            Config.DOMAIN_NAME + Config.BASE_URL_REST_V2
             + 'search?jql='
             + encodeURI(jql.replace(regex, jiraId));
 
@@ -29,7 +29,7 @@ class JiraSearch {
 
     static putUrl(jiraId) {
         let url =
-            Config.BASE_URL
+            Config.DOMAIN_NAME + Config.BASE_URL_REST_V2
             + 'issue/'
             + jiraId;
 
