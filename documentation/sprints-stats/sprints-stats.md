@@ -73,11 +73,12 @@ This eases the copy/paste into the Excel sheet.
 
 ## Copy to the Excel sheet
 Open the [sprints-stats](assets/sprints-stats.xlsm).
-I use the "Paste values" to prevent any troubles with references.
+I use the "Paste values" to prevent any troubles with references (you have supposedly replaced the commas `,` to a tabulation `\t`).
 
 ## Notes on the Excel Sheet
-- Tested on Mac only
-- Feel free to rename the sheet with your own team name
+- Tested on Mac only / Mac Office 2019
+- You should rename the sheet with your own team name
 - If you have multiple team, you can either use one sheet per team or duplicate the file.\
 I personally prefer the latter option so I upload the file on confluence on the team's space. 
-
+- I only keep the last 10 sprints. I don't think it's relevant to see the trend on more than 20 weeks.
+If your sprints are 1 week long, you might want to see more sprints.
