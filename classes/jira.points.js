@@ -87,7 +87,6 @@ class JiraPoints {
                 console.log(e);
                 
                 console.log('!!9!! fetchPoints(' + team + ", " + jiraId + "): boardId=" + config.getBoadId(team) + "Err");
-                //globalErrors += '!!9!! fetchPoints()' + team + ", " + jiraId + ', Err';
                 */
                 return;
             }

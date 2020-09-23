@@ -61,14 +61,10 @@ class JiraItems {
                 console.log(data);
                 
                 console.log('!!1!! ' + team.name + ', Err');
-                //globalErrors += '!!1!! ' + team.name + ', Err';
-                //return globalResult;
                 return;
             }
             
             JiraItems.parseJson(dataSet, team, sprint, json);
-            
-            //return globalResult;
             return;
         });
     }
@@ -76,13 +72,12 @@ class JiraItems {
     static parseJson(dataSet, team, sprint, json) {
         var startTime    = json.startTime;
         var endTime      = json.endTime;
-        var completeTime = json.completeTime;
+        // var completeTime = json.completeTime;
 
         
         var jiraItems = new JiraItems(startTime, endTime);
         
-        //console.log('!! team=' + team.name + ', sprint: ' + sprint.name + ', startTime: ' + startTime + ', endTime: ' + endTime + ', completeTime: ' + completeTime);
-        //globalErrors += '!! team=' + team.name + ', sprint: ' + sprint.name + ', startTime: ' + startTime + ', endTime: ' + endTime + ', completeTime: ' + completeTime;
+        // console.log('!! team=' + team.name + ', sprint: ' + sprint.name + ', startTime: ' + startTime + ', endTime: ' + endTime + ', completeTime: ' + completeTime);
 
         for (var timestamp in json.changes) {
             if (dataSet.debug) {
