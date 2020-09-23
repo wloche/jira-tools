@@ -6,12 +6,10 @@
  * @package sprints-stats
  */
 
-// var requestPromise = require('request-promise');
-
-
-// const teams = [ ];
-const teams = [ 'Kraftwerk' ];
-// teams = [ '99 Luftballons' ];
+/* ###### Put the teams you want to compute or keep it blank to do them all ###### */
+const teams = [ ];
+// const teams = [ 'Kraftwerk' ];
+/* ###### End of teams section ###### */
 
 const fs = require('fs')
 
