@@ -77,7 +77,7 @@ I copy paste the result to text editor. Replace the commas `,` to a tabulation `
 This eases the copy/paste into the Excel sheet.
 
 ## Copy to the Excel sheet
-Open the [sprints-stats](assets/sprints-stats.xlsm).
+Open the [sprints-stats](../../assets/sprints-stats.xlsm).
 
 1. Enable the Macros when prompted:
 ![Enable the Macros](images/excel-enable-macros.png)
