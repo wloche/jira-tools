@@ -40,9 +40,33 @@ const Config = {
     DOMAIN_NAME: 'https://##your-jira-server##',
     BASE_URL_REST_V2: '/jira/rest/api/2/',
     
-    // .......
+    async: false,
+    debug: false,
+
+    teams: [
+        {
+            'name': '99 Luftballons',
+            'boardId': 99,
+        },
+        {
+            'name': 'Kraftwerk',
+            'boardId': 2,
+        },
+    ],
+
+    jira: {
+        customFieldStoryPoints: 'customfield_10006',
+        pointsUrl:  "/jira/rest/agile/1.0/issue/%jiraId%?fields=%customFieldStoryPoints%,issuetype",
+        sprintsUrl: "/jira/rest/agile/1.0/board/%boardId%/sprint?startAt=%startAt%",
+        scoreChangelUrl: '/jira/rest/greenhopper/1.0/rapid/charts/scopechangeburndownchart?rapidViewId=%boardId%&sprintId=%sprintId%',
+    },
 }
 ```
+
+- `async`: whether the code is using async calls to Jira
+- `debug`: whenever something wrong happens :sweat_smile:
+- `teams`: list of your teams, replace accordingly
+- `jira`: hopefully you'll only need to update the value for `customFieldStoryPoints`
 
 ### `sprints-stats.js`
 Optionally, you can process some dedicated teams, update the constant `teams` accordingly:
