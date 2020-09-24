@@ -10,7 +10,7 @@ Report on the predictability of a team. It's based on PBIs and points so it shou
 Gives predictability on points and items. Gives the added and removed items of the sprints.
 
 ![Predictibility on Committed and Added PBIs](Kraftwerk/Predictability%20on%20Committed%20and%20Added%20PBIs.png)
-![Predictibility on Committed and Added Points](Kraftwerk/Predictability on Committed and Added Points.png)
+![Predictibility on Committed and Added Points](Kraftwerk/Predictability%20on%20Committed%20and%20Added%20Points.png)
 ![Added vs Removed](Kraftwerk/Added%20vs%20Removed.png)
 
 ### Purpose from a SM Point of view
