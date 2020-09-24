@@ -16,6 +16,11 @@ Gives predictability on points and items. Gives the added and removed items of t
 ### Purpose from a SM Point of view
 Help our teams to be engaged/aligned with the enterprise goals and sprint commitments.
 
+### Purpose from a PO/Stakeholder Point of view
+The product owner will have a fair ETA of completion.
+Let's assume an Epic is 50 story points, the team velocity is 15 points per sprint, and the predictability of the team is 75% (which is very good already).
+Should be 5 sprints to complete with the current velocity/effort and workload (`50/15/0.75=4.44 sprints`). 
+
 ## Install
 ```bash
 # install the dependencies with npm
@@ -40,7 +45,7 @@ const Config = {
 ```
 
 ### `sprints-stats.js`
-Optionally, you can process only some teams, update the constant `teams` accordingly:
+Optionally, you can process some dedicated teams, update the constant `teams` accordingly:
 
 ```javascript
 /* ###### Put the teams you want to compute or keep it blank to do them all ###### */
@@ -73,12 +78,31 @@ This eases the copy/paste into the Excel sheet.
 
 ## Copy to the Excel sheet
 Open the [sprints-stats](assets/sprints-stats.xlsm).
+
+1. Enable the Macros when prompted:
+![Enable the Macros](images/excel-enable-macros.png)
+2. Spot the data range:
+![Data range](images/excel-data-range.png)
+3. Paste the data.
 I use the "Paste values" to prevent any troubles with references (you have supposedly replaced the commas `,` to a tabulation `\t`).
+:information_source: When I have 10 sprints already, I "roll up the 9 sprints" and add the new one at the last position.
+4. Execute the macro, click on `Views/View Macros`:
+![View Macros](images/excel-view-macros.png),
+Then click on `Run`:
+![List of Macros](images/excel-macros.png),
+5. Locate the charts:
+On a finder (Mac), look for `sprints-stats` name, you'll see a folder named as you team.
+The charts are included:
+![List of Macros](images/finder-locate-charts.png).
+6. Confluence tip:
+I put the 2 `predictability` charts and `add vs removed` chart to my Sprint Review confluence page.
+Sprint after sprint, I clone the page. The beauty to update the charts is to simply drag and drop them into the page (in view mode, not when editing it).
 
 ## Notes on the Excel Sheet
-- Tested on Mac only / Mac Office 2019
+- :warning: Tested on Mac only / Mac Office 2019
 - You should rename the sheet with your own team name
-- If you have multiple team, you can either use one sheet per team or duplicate the file.\
+- If you have multiple teams, you can either use one sheet per team or duplicate the file.\
 I personally prefer the latter option so I upload the file on confluence on the team's space. 
 - I only keep the last 10 sprints. I don't think it's relevant to see the trend on more than 20 weeks.
 If your sprints are 1 week long, you might want to see more sprints.
+- :information_source: Executing the macro on a retina screen increases the chart size!
