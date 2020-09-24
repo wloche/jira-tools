@@ -9,9 +9,9 @@ The Excel sheet has been tested on Mac OS/Microsoft Office 2019 only (I struggle
 Report on the predictability of a team. It's based on PBIs and points so it should fit your practice.
 Gives predictability on points and items. Gives the added and removed items of the sprints.
 
-![Predictibility on Committed and Added PBIs](Kraftwerk/Predictibility%20on%20Committed%20and%20Added%20PBIs.png)
-![Predictibility on Committed and Added Points](Kraftwerk/Predictibility on Committed and Added Points.png)
-![Added vs Removed](Kraftwerk/Added_vs_Removed.png)
+![Predictibility on Committed and Added PBIs](Kraftwerk/Predictability%20on%20Committed%20and%20Added%20PBIs.png)
+![Predictibility on Committed and Added Points](Kraftwerk/Predictability on Committed and Added Points.png)
+![Added vs Removed](Kraftwerk/Added%20vs%20Removed.png)
 
 ### Purpose from a SM Point of view
 Help our teams to be engaged/aligned with the enterprise goals and sprint commitments.
