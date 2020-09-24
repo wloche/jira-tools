@@ -11,7 +11,9 @@ Gives predictability on points and items. Gives the added and removed items of t
 
 ![Predictibility on Committed and Added PBIs](Kraftwerk/Predictibility on Committed and Added PBIs.png)
 ![Predictibility on Committed and Added Points](Kraftwerk/Predictibility on Committed and Added Points.png)
-![Added vs Removed](Kraftwerk/Added vs Removed.png)
+![Added vs Removed1](Kraftwerk/Added_vs_Removed.png)
+![Added vs Removed2](documentation/sprints-stats/Kraftwerk/Added_vs_Removed.png)
+![Added vs Removed3](/documentation/sprints-stats/Kraftwerk/Added_vs_Removed.png)
 
 ### Purpose from a SM Point of view
 Help our teams to be engaged/aligned with the enterprise goals and sprint commitments.
