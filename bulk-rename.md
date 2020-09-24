@@ -23,7 +23,8 @@ Replace the values with your credentials and Jira domain name.
 const Config = {
     USER: '##USER##',
     PASSWORD: '##PASSWORD##',
-    BASE_URL: 'https://##your-jira-server##/jira/rest/api/2/',
+    DOMAIN_NAME: 'https://##your-jira-server##',
+    BASE_URL_REST_V2: '/jira/rest/api/2/',
 }
 
 ### `bulk-rename.js`

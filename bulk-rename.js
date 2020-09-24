@@ -3,7 +3,7 @@
  *
  * @licence Wilfried Loche <wilfried.wl.loche@gmail.com>
  * @license GPL-3.0-or-later
- * @package jira-tools
+ * @package bulk-rename
  */
 
 /* ###### Parameters to be updated ###### */
