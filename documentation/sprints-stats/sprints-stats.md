@@ -1,8 +1,13 @@
 # Sprints Statistics
 
-## Pre-requisite
-So far, tested on [Atlassian Jira](https://www.atlassian.com/software/jira) v8.5.1, might work on other versions... or not :).
-The Excel sheet has been tested on Mac OS/Microsoft Office 2019 only (I struggled a bit to make it working actually). Hoping it works smoothly on Windows.
+## Pre-requisites
+- [Atlassian Jira](https://www.atlassian.com/software/jira) 
+    - Tested on [Atlassian Jira](https://www.atlassian.com/software/jira) v8.5.1, might work on other versions... or not :).
+- [Node.js](https://nodejs.org/en/)
+    - Using v10.9.0 on Mac, I'm not using anything fancy though.
+- Microsoft Excel
+    - Heavily used on Mac OS/Microsoft Office 2019 (I struggled a bit to make it working actually).
+    - Debugged to make it work on Windows (our new teams use Windows laptop #5 )
 
 ## Purpose
 ### Purpose of this script
@@ -123,8 +128,8 @@ I put the 2 `predictability` charts and `add vs removed` chart to my Sprint Revi
 Sprint after sprint, I clone the page. The beauty to update the charts is to simply drag and drop them into the page (in view mode, not when editing it).
 
 ## Notes on the Excel Sheet
-- :warning: Tested on Mac only / Mac Office 2019
-- You should rename the sheet with your own team name
+- :warning: Tested on Mac only / Mac Office 2019 and Windows / Office 2010
+- Feel free to rename the sheet with your own team name
 - If you have multiple teams, you can either use one sheet per team or duplicate the file.\
 I personally prefer the latter option so I upload the file on confluence on the team's space. 
 - I only keep the last 10 sprints. I don't think it's relevant to see the trend on more than 20 weeks.
