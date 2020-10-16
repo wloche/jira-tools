@@ -5,6 +5,7 @@
     - Tested on [Atlassian Jira](https://www.atlassian.com/software/jira) v8.5.1, might work on other versions... or not :).
 - [Node.js](https://nodejs.org/en/)
     - Using v10.9.0 on Mac, I'm not using anything fancy though.
+    - https://nodejs.org/en/download/
 - Microsoft Excel
     - Heavily used on Mac OS/Microsoft Office 2019 (I struggled a bit to make it working actually).
     - Debugged to make it work on Windows (our new teams use Windows laptop #5 )
