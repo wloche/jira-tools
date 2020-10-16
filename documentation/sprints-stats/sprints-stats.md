@@ -9,6 +9,8 @@
 - Microsoft Excel
     - Heavily used on Mac OS/Microsoft Office 2019 (I struggled a bit to make it working actually).
     - Debugged to make it work on Windows (our new teams use Windows laptop #5 )
+- [brew](https://brew.sh/) (if on Mac)
+- [Git](https://git-scm.com/download)
 
 ## Purpose
 ### Purpose of this script
