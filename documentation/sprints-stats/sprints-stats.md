@@ -30,8 +30,13 @@ Let's assume an Epic is 50 story points, the team velocity is 15 points per spri
 Should be 5 sprints to complete with the current velocity/effort and workload (`50/15/0.75=4.44 sprints`). 
 
 ## Install
+### Clone the repo
 ```bash
-# install the dependencies with npm
+$ git clone https://github.com/wloche/jira-tools.git
+```
+
+### Install dependencies
+```bash
 $ npm install
 ```
 
