@@ -14,7 +14,6 @@ const Config = {
     BASE_URL_REST_V2: '/jira/rest/api/2/',
 
     async: false,
-    useSecuredJira: true,
     debug: false,
 
     teams: [
