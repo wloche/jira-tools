@@ -5,9 +5,12 @@
     - Tested on [Atlassian Jira](https://www.atlassian.com/software/jira) v8.5.1, might work on other versions... or not :).
 - [Node.js](https://nodejs.org/en/)
     - Using v10.9.0 on Mac, I'm not using anything fancy though.
+    - https://nodejs.org/en/download/
 - Microsoft Excel
     - Heavily used on Mac OS/Microsoft Office 2019 (I struggled a bit to make it working actually).
     - Debugged to make it work on Windows (our new teams use Windows laptop #5 )
+- [brew](https://brew.sh/) (if on Mac)
+- [Git](https://git-scm.com/download)
 
 ## Purpose
 ### Purpose of this script
@@ -27,8 +30,13 @@ Let's assume an Epic is 50 story points, the team velocity is 15 points per spri
 Should be 5 sprints to complete with the current velocity/effort and workload (`50/15/0.75=4.44 sprints`). 
 
 ## Install
+### Clone the repo
 ```bash
-# install the dependencies with npm
+$ git clone https://github.com/wloche/jira-tools.git
+```
+
+### Install dependencies
+```bash
 $ npm install
 ```
 
