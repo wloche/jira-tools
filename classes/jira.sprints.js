@@ -64,6 +64,7 @@ class JiraSprints {
             // Sync calls
             if (jiraSprints.config.debug) {
                 console.debug("SYNC Call for " + jiraSprints.team.name + ", startAt=" + startAt);
+                console.debug(">" + options.uri);
             }
 
             let res = null;
@@ -120,13 +121,7 @@ class JiraSprints {
          * //...
          * ]
          */
-        //console.log(json);
-        
-        // Match // 2018.07 S2 Isetta
-        //##var sprintRegExp = /20\d\d\.\d\d S[1-3]/i;
-        
-        // Match // 2018 WK42 Kraftwerk
-        const sprintRegExp = /20\d\d WK ?\d+/i;
+        const sprintRegExp = this.config.SPRINT_REG_EXP;
         let sprints = {};
         
         for (let i = 0, len = json.values.length; i < len; i++) {
@@ -154,8 +149,11 @@ class JiraSprints {
                 console.log("-- Sprint --: " + json.values[i].name + "; " + status);
             } */
         }
-        
-        //console.log(sprints);
+
+        if (this.config.debug) {
+            console.log(sprints);
+        }
+
         return sprints;
     }
 
