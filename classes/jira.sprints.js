@@ -109,6 +109,8 @@ class JiraSprints {
     }
     
     parseJson(json) {
+        const nowDate = moment();
+
         /*
          * [ { id: 1677,
          * self: 'http://suus0002.w10:8080/rest/agile/1.0/sprint/1677',
@@ -125,19 +127,29 @@ class JiraSprints {
         let sprints = {};
         
         for (let i = 0, len = json.values.length; i < len; i++) {
+            let completeDate = moment(json.values[i].completeDate);
+
             if (
                 json.values[i].originBoardId == this.team.boardId
                 && json.values[i].state == "closed"
                 && json.values[i].name.match(sprintRegExp)
             ) {
-                sprints[json.values[i].id] = {
-                    "id":       json.values[i].id,
-                    "name":     json.values[i].name,
-                    "start":    json.values[i].startDate,
-                    "end":      json.values[i].endDate,
-                    "complete": json.values[i].completeDate
-                };
-                //console.log("++ Sprint ++: " + json.values[i].name);
+                const days = nowDate.diff(completeDate, 'days');
+                if (days <= this.config.MIN_COMPLETED_DAYS) {
+                    if (this.config.debug) {
+                        console.log("+ Sprint '" + json.values[i].name + "' added");
+                    }
+
+                    sprints[json.values[i].id] = {
+                        "id":       json.values[i].id,
+                        "name":     json.values[i].name,
+                        "start":    json.values[i].startDate,
+                        "end":      json.values[i].endDate,
+                        "complete": json.values[i].completeDate
+                    };
+                } else {
+                    console.log("~ Sprint '" + json.values[i].name + "' outdated by " + days + " days");
+                }
             } /* else {
                 let status
                     = (json.values[i].state == "closed")

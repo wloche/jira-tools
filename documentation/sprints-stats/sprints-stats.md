@@ -45,14 +45,22 @@ $ npm install
 ### `config.js`
 Copy `classes/config-dist.js` and renamed it to `classes/config.js`
 Replace the values with your credentials and Jira domain name.
+If you are using a token: just put it in the `PASSWORD`. 
 
 ```javascript
 const Config = {
+    /* ###### Parameters to be updated ###### */
     USER: '##USER##',
     PASSWORD: '##PASSWORD##',
     DOMAIN_NAME: 'https://##your-jira-server##',
     BASE_URL_REST_V2: '/jira/rest/api/2/',
-    
+    // f.e. Matches SPA Sprint 6
+    // SPRINT_REG_EXP: /Sprint \d+/i,
+    SPRINT_REG_EXP: / \d+/i,
+
+    // How many days after you don't compute again the sprint ?
+    MIN_COMPLETED_DAYS: 60,
+
     async: false,
     debug: false,
 
@@ -73,9 +81,13 @@ const Config = {
         sprintsUrl: "/jira/rest/agile/1.0/board/%boardId%/sprint?startAt=%startAt%",
         scoreChangelUrl: '/jira/rest/greenhopper/1.0/rapid/charts/scopechangeburndownchart?rapidViewId=%boardId%&sprintId=%sprintId%',
     },
+    /* ###### End of parameters section ###### */
+    // [...]
 }
 ```
 
+- `SPRINT_REG_EXP`: `/ \d+/i` by default. Double check the sprint naming against this regular expression,
+- `MIN_COMPLETED_DAYS`: `60` by default. How many days after you don't compute again the sprint ?
 - `async`: whether the code is using async calls to Jira
 - `debug`: whenever something wrong happens :sweat_smile:
 - `teams`: list of your teams, replace accordingly

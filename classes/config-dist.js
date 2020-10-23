@@ -15,6 +15,9 @@ const Config = {
     // f.e. Matches SPA Sprint 6
     SPRINT_REG_EXP: /Sprint \d+/i,
 
+    // How many days after you don't compute again the sprint ?
+    MIN_COMPLETED_DAYS: 60,
+
     async: false,
     debug: false,
 
