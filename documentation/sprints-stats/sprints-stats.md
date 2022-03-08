@@ -1,13 +1,21 @@
 # Sprints Statistics
 
 # Pre-requisites
+
+## Tools
 - [Atlassian Jira](https://www.atlassian.com/software/jira) 
     - Tested on [Atlassian Jira](https://www.atlassian.com/software/jira) v8.5.1, might work on other versions... or not :).
+    - Tested on [Atlassian Cloud](https://confluence.atlassian.com/cloud/blog/2022/03/atlassian-cloud-changes-feb-28-to-mar-7-2022) 2021~2022 versions.
 - [Git](https://git-scm.com/download)
+
+## Spreadsheet
 - Microsoft Excel
   - Heavily used on Mac OS/Microsoft Office 2019 (I struggled a bit to make it working actually).
   - Debugged to make it work on Windows (our new teams use Windows laptop #5 )
+- Google sheet
+  - Way better options sso it's integrated via confluence
 
+## Executing the tool
 - Local setup
   - [Node.js](https://nodejs.org/en/)
     - Using v10.9.0 on Mac, I'm not using anything fancy though.
