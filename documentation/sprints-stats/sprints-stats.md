@@ -3,6 +3,7 @@
 # Pre-requisites
 
 ## Tools
+- For Windows users, go [Windows Tools Setup](windows-tools-setup.md)
 - [Atlassian Jira](https://www.atlassian.com/software/jira) 
     - Tested on [Atlassian Jira](https://www.atlassian.com/software/jira) v8.5.1, might work on other versions... or not :).
     - Tested on [Atlassian Cloud](https://confluence.atlassian.com/cloud/blog/2022/03/atlassian-cloud-changes-feb-28-to-mar-7-2022) 2021~2022 versions.
