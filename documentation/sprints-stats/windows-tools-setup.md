@@ -11,3 +11,7 @@
   - Target Directory: must be a new folder, using `/` seperator (Unix style, not Widows)
 - Check the repo is cloned in your explorer:
   ![CLoned repo in explorer](images/git-03-cloned.png)
+
+# Docker
+🔗 [Install Docker Desktop on Windows](https://docs.docker.com/desktop/windows/install/)
+- Click on the button `Docker Desktop for Windows`
