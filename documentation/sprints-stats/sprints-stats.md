@@ -55,7 +55,7 @@ $ git clone https://github.com/wloche/jira-tools.git
 ## `config.js`
 1. Copy `classes/config-dist.js` and renamed it to `classes/config.js`
 2. Replace the values with your credentials and Jira domain name.
-3. If you are using a token: just put it in the `PASSWORD`. 
+3. If you are using a token: just put it in the `PASSWORD`. 🔗 [API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
 
 ```javascript
 const Config = {
