@@ -8,6 +8,6 @@
 - Choose the `Clone Existing Repository` option, then 
   - Source Location is: https://github.com/wloche/jira-tools.git
   - Target Directory: must be a new folder, using `/` seperator (Unix style, not Widows)
- ![Right click ob explorer](images/git-02-clone.png)
+![Right click ob explorer](images/git-02-clone.png)
 - Check the repo is cloned in your explorer:
 ![CLoned repo in explorer](images/git-03-cloned.png)
