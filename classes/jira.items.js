@@ -10,15 +10,15 @@ var requestPromise = require('request-promise');
 const JiraTeams = require('./jira.teams.js');
 
 class JiraItems {
-    
+
     constructor(startTime, endTime) {
       this.startTime = startTime;
       this.endTime   = endTime;
-      
+
       this.items = {};
     }
-    
-    
+
+
     /**
      * Output the estimated and completed story points for the given sprint and team
      *
@@ -30,7 +30,7 @@ class JiraItems {
         if (dataSet.debug) {
             console.log('... ' + team.name);
         }
-        
+
         const auth = Buffer.from(dataSet.USER + ':' + dataSet.PASSWORD).toString('base64');
         const options = {
             uri: dataSet.constructScoreChangelUrl(team.boardId, sprint.id),
@@ -41,7 +41,7 @@ class JiraItems {
             },
             rejectUnauthorized: false
         };
-        
+
         return requestPromise(options, (error, response, data) => {
             //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
             if (dataSet.debug) {
@@ -57,13 +57,13 @@ class JiraItems {
                 json = JSON.parse(data);
             } catch (e) {
                 console.log(e);
-                
+
                 console.log(data);
-                
+
                 console.log('!!1!! ' + team.name + ', Err');
                 return;
             }
-            
+
             JiraItems.parseJson(dataSet, team, sprint, json);
             return;
         });
@@ -74,9 +74,9 @@ class JiraItems {
         var endTime      = json.endTime;
         // var completeTime = json.completeTime;
 
-        
+
         var jiraItems = new JiraItems(startTime, endTime);
-        
+
         // console.log('!! team=' + team.name + ', sprint: ' + sprint.name + ', startTime: ' + startTime + ', endTime: ' + endTime + ', completeTime: ' + completeTime);
 
         for (var timestamp in json.changes) {
@@ -85,11 +85,11 @@ class JiraItems {
             }
             jiraItems.add(timestamp, json.changes[timestamp]);
         }
-        
+
         JiraTeams.addSprint(team, sprint, jiraItems);
         //console.log(jiraItems.toString());
     }
-    
+
     addOne(ts, item) {
         /*
         {
@@ -114,8 +114,8 @@ class JiraItems {
         var notDone = null;
         var done    = null;
         var added   = null;
-        
-        
+
+
         if (item.hasOwnProperty('statC') && item.statC.hasOwnProperty('newValue')) {
             i.points = item.statC.newValue;
         }
@@ -144,15 +144,15 @@ class JiraItems {
         if (i.added && done && ts <= this.startTime) {
             i.completeOutside = true;
         }
-        
+
         if (this.items.hasOwnProperty(item.key)) {
             this.items[item.key] = Object.assign({}, this.items[item.key], i);
         } else {
             this.items[item.key] = i;
         }
     }
-    
-    
+
+
 
     add(ts, items) {
         if (Array.isArray(items)) {
@@ -164,9 +164,9 @@ class JiraItems {
         }
         return this;
     }
-    
+
     parse() {
-        var items = {  
+        var items = {
             "committed":     [],
             "committedDone": [],
             "added":         [],
@@ -174,7 +174,7 @@ class JiraItems {
             "removed":       [],
             "others":        []
         };
-        
+
         for (var key in this.items) {
             if (/*this.items[key].committed &&*/ this.items[key].added === false) {
                 items.removed.push(key);
@@ -195,19 +195,19 @@ class JiraItems {
                 items.others.push(key);
             }
         }
-        
+
         return items;
     }
-    
+
     toString() {
         if (false) {
             var s = "<< items >>\n";
-            
+
             for (var key in this.items) {
                 s += JSON.stringify(this.items[key]) + "\n";
             }
         }
-        
+
         var items = this.parse();
         s += "\n<< parsed >>";
         s += "\ncommitted: " + items.committed.length;
@@ -215,19 +215,19 @@ class JiraItems {
         s += "\n- % Done: " + Math.round((items.committedDone.length / items.committed.length) * 100);
         s += "\n- {}    : " + JSON.stringify(items.committed);
         s += "\n- {Done}: " + JSON.stringify(items.committedDone);
-        
+
         s += "\nadded   : " + items.added.length;
         s += "\n- Done  : " + items.addedDone.length;
         s += "\n- % Done: " + Math.round((items.addedDone.length / items.added.length) * 100);
         s += "\n- {}    : " + JSON.stringify(items.added);
         s += "\n- {Done}: " + JSON.stringify(items.addedDone);
-        
+
         s += "\nremoved   : " + items.removed.length;
         s += "\n- {}    : " + JSON.stringify(items.removed);
 
         s += "\nothers   : " + items.others.length;
         s += "\n- {}    : " + JSON.stringify(items.others);
-        
+
         return s;
     }
 
