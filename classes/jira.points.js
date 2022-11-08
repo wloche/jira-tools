@@ -10,48 +10,48 @@ var requestPromise = require('request-promise');
 const JiraTeams = require('./jira.teams.js');
 
 class JiraPoints {
-    
+
     static add(id, points) {
         if (!JiraPoints.points) {
             JiraPoints.points = {};
         }
         JiraPoints.points[id] = points;
     }
-    
+
     static exists(id) {
         if (!JiraPoints.points) {
             JiraPoints.points = {};
         }
         return JiraPoints.points.hasOwnProperty(id);
     }
-    
+
     static get(id) {
         if (!JiraPoints.exists(id)) {
             return null;
         }
         return JiraPoints.points[id];
     }
-    
+
     static toString() {
         let s = "<< Points >>\n";
-        
+
         for (let key in JiraPoints.points) {
             s += "Id: " + key + ": " + JiraPoints.points[key] + "\n";
         }
-        
+
         return s;
     }
-    
+
     static fetch(config, team, jiraId) {
         if (JiraPoints.exists(jiraId)) {
-            //console.log(`fetch(${team}, ${jiraId}): jiraId already exists`);
+            // console.log(`fetch(${team}, ${jiraId}): jiraId already exists`);
             return new Promise(function (fulfill, reject){
                 fulfill();
               });
         }
-        
+
         JiraPoints.add(jiraId, null);
-        
+
         let boardId = config.getBoardId(team);
         if (boardId === null) {
             console.log('!!9!! fetchPoints(' + team + ", " + jiraId + "): boardId=null //Err");
@@ -60,7 +60,7 @@ class JiraPoints {
               });
 
         }
-        
+
         const auth = Buffer.from(config.USER + ':' + config.PASSWORD).toString('base64');
         const options = {
             uri: config.getPointsUrl()
@@ -83,9 +83,9 @@ class JiraPoints {
                 /*
                 console.log("data:" + data);
                 console.log("uri:" + options.uri);
-                
+
                 console.log(e);
-                
+
                 console.log('!!9!! fetchPoints(' + team + ", " + jiraId + "): boardId=" + config.getBoadId(team) + "Err");
                 */
                 return;
@@ -110,8 +110,8 @@ class JiraPoints {
             //console.log(JiraPoints.toString());
             return;
         }).catch((err) => { console.log(`fetch(${team}, ${jiraId})`); JiraPoints.add(jiraId, 0); });
-        
-        
+
+
     }
 }
 
