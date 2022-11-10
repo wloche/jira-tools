@@ -38,8 +38,10 @@ process.on('unhandledRejection', error => {
     console.log('unhandledRejection', error.message);
 });
 
-JiraPbi.get(JIRA_ID_PARENT).then(() => {
-    for (let assignee in users) {
-        JiraPbi.post(users[assignee]);
-    }
-});
+for (let i in JIRA_ID_PARENTS) {
+    JiraPbi.get(JIRA_ID_PARENTS[i]).then(() => {
+        for (let assignee in users) {
+            JiraPbi.post(users[assignee]);
+        }
+    });
+}
