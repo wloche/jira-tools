@@ -209,3 +209,12 @@ docker run -v `pwd`:/usr/src/app -it --rm wloche/jira-tools:latest npm install
 ```
 
 It will create the `node_modules` folder.
+
+## `master` branch is no longer!
+If you ran in the `master` branch, you need to update to `main`, proceed with the following commands:
+```shell
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+```
