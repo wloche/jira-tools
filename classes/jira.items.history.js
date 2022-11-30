@@ -6,34 +6,32 @@
  * @package sprints-stats
  */
 
-var requestPromise = require('request-promise');
-const JiraTeams = require('./jira.teams.js');
+const requestPromise = require('request-promise');
+const Config = require('./config.js');
+const JiraSearch = require('./jira.search');
 
-class JiraItems {
+class JiraItemsHistory {
 
-    constructor(startTime, endTime) {
-      this.startTime = startTime;
-      this.endTime   = endTime;
-
-      this.items = {};
+    constructor(attribute) {
+      this.attribute = attribute;
+      this.history = {};
     }
-
 
     /**
      * Output the estimated and completed story points for the given sprint and team
      *
-     * @param team {'name', 'sprintPrefix', 'rapidViewId'}
-     * @param sprintParam sprint
+     * @param string id
      * @returns void
      */
-    static get(dataSet, team, sprint) {
-        if (dataSet.debug) {
-            console.log('... ' + team.name);
+    static get(jiraId) {
+        if (Config.debug) {
+            console.log('... ' + jiraId);
         }
 
-        const auth = Buffer.from(dataSet.USER + ':' + dataSet.PASSWORD).toString('base64');
+        const auth = Buffer.from(Config.USER + ':' + Config.PASSWORD).toString('base64');
         const options = {
-            uri: dataSet.constructScoreChangelUrl(team.boardId, sprint.id),
+            uri: Config.DOMAIN_NAME + '/rest/internal/2/issue/%jiraId%/activityfeed'
+                .replace('%jiraId%', jiraId),
             method: 'GET',
             headers: {
                 Authorization: 'Basic ' + auth,
@@ -44,49 +42,69 @@ class JiraItems {
 
         return requestPromise(options, (error, response, data) => {
             //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-            if (dataSet.debug) {
-                console.log('?? ' + team.name);
+            if (Config.debug) {
+                console.log('?? ' + jiraId);
             }
             //console.log(`BODY: ${chunk}`);
-
-            var sprintId = 0;
-            var sprintName = '';
             var json = null;
 
             try {
                 json = JSON.parse(data);
             } catch (e) {
                 console.log(e);
-
                 console.log(data);
-
-                console.log('!!1!! ' + team.name + ', Err');
+                console.log('!!1!! ' + jiraId + ', Err');
                 return;
             }
 
-            JiraItems.parseJson(dataSet, team, sprint, json);
+            JiraItemsHistory.parseJson(jiraId, json);
             return;
         });
     }
 
-    static parseJson(dataSet, team, sprint, json) {
-        var startTime    = json.startTime;
-        var endTime      = json.endTime;
-        // var completeTime = json.completeTime;
+    static parseJson(jiraId, json) {
+        // console.log(json);
 
+        let description = '';
+        let timestamp = 0;
 
-        var jiraItems = new JiraItems(startTime, endTime);
+        json.items.forEach(function (item) {
+            if (item.fieldDisplayName == 'Description') {
+                console.log(item);
 
-        // console.log('!! team=' + team.name + ', sprint: ' + sprint.name + ', startTime: ' + startTime + ', endTime: ' + endTime + ', completeTime: ' + completeTime);
-
-        for (var timestamp in json.changes) {
-            if (dataSet.debug) {
-                console.log("> key:" + timestamp + ", value:" + JSON.stringify(json.changes[timestamp]));
+                if (item.to.displayValue == 'TBD' || item.to.displayValue == 'N/A') {
+                    description = item.from.displayValue;
+                    timestamp = item.timestamp;
+                    // console.log('>>>> from: ' + jiraId + '<<<< ' + new Date(item.timestamp).toISOString());
+                    // console.log(item.from.displayValue);
+                    // console.log('>>>> to: ' + jiraId);
+                    // console.log(item.to.displayValue);
+                } else if (description !== '') {
+                    //description = 'reverted';
+                }
             }
-            jiraItems.add(timestamp, json.changes[timestamp]);
+        });
+
+        if (description !== '') {
+            console.log('>>>> from: ' + jiraId + '<<<< ' + new Date(timestamp).toISOString());
+            console.log(description);
+            // JiraItemsHistory.updateDescription(jiraId, description);
+            JiraSearch.updateDescription(jiraId, description);
         }
 
-        JiraTeams.addSprint(team, sprint, jiraItems);
+
+        // var jiraItems = new JiraItems(startTime, endTime);
+        //
+        // // console.log('!! team=' + team.name + ', sprint: ' + sprint.name + ', startTime: ' + startTime + ', endTime: ' + endTime + ', completeTime: ' + completeTime);
+        //
+        // for (var timestamp in json.changes) {
+        //     if (dataSet.debug) {
+        //         console.log("> key:" + timestamp + ", value:" + JSON.stringify(json.changes[timestamp]));
+        //     }
+        //     jiraItems.add(timestamp, json.changes[timestamp]);
+        // }
+        //
+        // JiraTeams.addSprint(team, sprint, jiraItems);
         //console.log(jiraItems.toString());
     }
 
@@ -233,7 +251,7 @@ class JiraItems {
 
 }
 
-module.exports = JiraItems;
+module.exports = JiraItemsHistory;
 
 
 /*

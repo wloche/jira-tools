@@ -112,6 +112,36 @@ class JiraSearch {
         });
     }
 
+    static updateDescription(jiraId, description) {
+
+        const auth = Buffer.from(Config.USER + ':' + Config.PASSWORD).toString('base64');
+        const options = {
+            uri: JiraSearch.putUrl(jiraId),
+            method: 'PUT',
+            headers: {
+                Authorization: 'Basic ' + auth,
+                'Content-Type': 'application/json'
+            },
+            body: {
+                "fields": {
+                    "description": description
+                }
+            },
+            rejectUnauthorized: false,
+            json: true // Automatically stringifies the body to JSON
+        };
+
+        console.log(options);
+
+        // ASync calls
+
+        return requestPromise(options, (error, response, data) => {
+            console.log(response.statusCode); // 204 expected
+            // console.log(response); // 204 expected
+            return;
+        });
+    }
+
 }
 
 module.exports = JiraSearch;

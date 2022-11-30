@@ -116,7 +116,12 @@ const teams = [ ];
 # Run
 ## Docker
 ```shell
+# Build the image (once)
 docker build . -t wloche/jira-tools:latest
+# Install the node modules (once)
+docker run -v `pwd`:/usr/src/app -it --rm wloche/jira-tools:latest npm install
+
+# Run the scrip (each time you need!!)
 docker run -v `pwd`:/usr/src/app -it --rm wloche/jira-tools:latest
 ```
 
@@ -181,3 +186,26 @@ I personally prefer the latter option so I upload the file on confluence on the 
 - I only keep the last 10 sprints. I don't think it's relevant to see the trend on more than 20 weeks.
 If your sprints are 1 week long, you might want to see more sprints.
 - :information_source: Executing the macro on a retina screen increases the chart size!
+
+# Troubleshooting
+##  Error: Cannot find module 'request-promise'
+If you are having:
+```shell
+wilfriedloche@SO-WilfriedLoche jira-tools % docker run -v `pwd`:/usr/src/app -it --rm wloche/jira-tools:latest
+node:internal/modules/cjs/loader:988
+  throw err;
+  ^
+
+Error: Cannot find module 'request-promise'
+Require stack:
+- /usr/src/app/classes/jira.items.js
+- /usr/src/app/sprints-stats.js
+...
+```
+
+Run this:
+```shell
+docker run -v `pwd`:/usr/src/app -it --rm wloche/jira-tools:latest npm install
+```
+
+It will create the `node_modules` folder.
