@@ -3,6 +3,7 @@
 # Pre-requisites
 
 ## Tools
+- For Windows users, go [Windows Tools Setup](windows-tools-setup.md)
 - [Atlassian Jira](https://www.atlassian.com/software/jira) 
     - Tested on [Atlassian Jira](https://www.atlassian.com/software/jira) v8.5.1, might work on other versions... or not :).
     - Tested on [Atlassian Cloud](https://confluence.atlassian.com/cloud/blog/2022/03/atlassian-cloud-changes-feb-28-to-mar-7-2022) 2021~2022 versions.
@@ -54,7 +55,7 @@ $ git clone https://github.com/wloche/jira-tools.git
 ## `config.js`
 1. Copy `classes/config-dist.js` and renamed it to `classes/config.js`
 2. Replace the values with your credentials and Jira domain name.
-3. If you are using a token: just put it in the `PASSWORD`. 
+3. If you are using a token: just put it in the `PASSWORD`. 🔗 [API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
 
 ```javascript
 const Config = {
@@ -185,26 +186,3 @@ I personally prefer the latter option so I upload the file on confluence on the 
 - I only keep the last 10 sprints. I don't think it's relevant to see the trend on more than 20 weeks.
 If your sprints are 1 week long, you might want to see more sprints.
 - :information_source: Executing the macro on a retina screen increases the chart size!
-
-# Troubleshooting
-##  Error: Cannot find module 'request-promise'
-If you are having:
-```shell
-wilfriedloche@SO-WilfriedLoche jira-tools % docker run -v `pwd`:/usr/src/app -it --rm wloche/jira-tools:latest
-node:internal/modules/cjs/loader:988
-  throw err;
-  ^
-
-Error: Cannot find module 'request-promise'
-Require stack:
-- /usr/src/app/classes/jira.items.js
-- /usr/src/app/sprints-stats.js
-...
-```
-
-Run this:
-```shell
-docker run -v `pwd`:/usr/src/app -it --rm wloche/jira-tools:latest npm install
-```
-
-It will create the `node_modules` folder.
