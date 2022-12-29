@@ -152,11 +152,43 @@ Kraftwerk,67708,2020 WK35,16,12,12,10,6,1,0,0,2,0
 Kraftwerk,67709,2020 WK37,20,6,17,3,5,1,3,0,3,0
 ```
 
-# Transform the CSV formatted data
+# Google Sheet
+Report it to the Google Sheet, e.g. Core-CSVC-Sprints Stats.xlsm .
+Goal: “Scroll-up” the last 9 rows up, then paste the results from the script.
+
+Based on this output:
+```shell
+team,sprintId,sprintName,committed,committedPoints,commDone,commDonePoints,added,addedPoints,addedDone,addedDonePoints,removed,removedPoints
+CSVC,2408,Core Services Sprint 25,27,58,12,20,18,30,10,18,0,0
+CSVC,2409,Core Services Sprint 26,32,67,12,32,20,23,9,4,0,0
+CSVC,2565,Core Services Sprint 27,33,59,13,26,12,19,0,0,0,0
+CSVC,2566,Core Services Sprint 28,39,79,28,43,12,21,5,8,2,5
+CSVC,2638,Core Services Sprint 29,25,66,16,32,11,15,5,9,1,5
+```
+
+1. select the last 9 rows, copy/paste into the first cell: ![Select last 9 rows](images/gsheet-1-select-last-9-rows.png)
+2. copy the last 3 rows of the script
+```
+CSVC,2565,Core Services Sprint 27,33,59,13,26,12,19,0,0,0,0
+CSVC,2566,Core Services Sprint 28,39,79,28,43,12,21,5,8,2,5
+CSVC,2638,Core Services Sprint 29,25,66,16,32,11,15,5,9,1,5
+```
+3. and paste it to the sheet into the antepenultimate row: ![Paste 3 last rows](images/gsheet-3-paste-antepenultimate-row.png)
+4. Use the `Split text to column` feature: ![Split text to column](images/gsheet-4-split-to-columns.png)
+5. Result should look like: ![Result](images/gsheet-5-results.png)
+6. You can also check the chart updated, refresh the confluence page to see the updates as well :tada:
+
+## Google Sheet + Confluence tip
+To publish a chart to confluence automatically, here are the steps:
+1. URL on the chart
+2. iframe on confluence
+
+# Microsoft Excel
+## Transform the CSV formatted data
 I copy paste the result to text editor. Replace the commas `,` to a tabulation `\t`.
 This eases the copy/paste into the Excel sheet.
 
-# Copy to the Excel sheet
+## Copy to the Excel sheet
 Open the [sprints-stats](../../assets/sprints-stats.xlsm).
 
 1. Enable the Macros when prompted:
@@ -178,7 +210,7 @@ The charts are included:
 I put the 2 `predictability` charts and `add vs removed` chart to my Sprint Review confluence page.
 Sprint after sprint, I clone the page. The beauty to update the charts is to simply drag and drop them into the page (in view mode, not when editing it).
 
-# Notes on the Excel Sheet
+## Notes on the Excel Sheet
 - :warning: Tested on Mac only / Mac Office 2019 and Windows / Office 2010
 - Feel free to rename the sheet with your own team name
 - If you have multiple teams, you can either use one sheet per team or duplicate the file.\
