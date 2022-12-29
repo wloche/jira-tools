@@ -157,7 +157,7 @@ Report it to the Google Sheet, e.g. Core-CSVC-Sprints Stats.xlsm .
 Goal: “Scroll-up” the last 9 rows up, then paste the results from the script.
 
 Based on this output:
-```shell
+```
 team,sprintId,sprintName,committed,committedPoints,commDone,commDonePoints,added,addedPoints,addedDone,addedDonePoints,removed,removedPoints
 CSVC,2408,Core Services Sprint 25,27,58,12,20,18,30,10,18,0,0
 CSVC,2409,Core Services Sprint 26,32,67,12,32,20,23,9,4,0,0
@@ -180,8 +180,12 @@ CSVC,2638,Core Services Sprint 29,25,66,16,32,11,15,5,9,1,5
 
 ## Google Sheet + Confluence tip
 To publish a chart to confluence automatically, here are the steps:
-1. URL on the chart
-2. iframe on confluence
+1. Here is the [google sheet](https://docs.google.com/spreadsheets/d/1QpDfCxFeUb_tO5ZTH-WJvVq3uld1tTDE/edit?usp=sharing&ouid=113116956950991881861&rtpof=true&sd=true) I use, feel fre to copy it as you please!
+2. Choose the chart you wish to show on the confluence page, _f.e._ `Predictability on Committed and Added PBIs`, click on the vertical `...`, then `Publish Chart`: ![Publish Chart](images/gsheet-publish-1_Publish.png)
+3. Check the options, the permissions and copy the `URL`: ![Publish Chart: link](images/gsheet-publish-2_Published-link.png)
+4. Add an iframe widget on your confluence page and paste the URL: ![iFrame: URL](images/gsheet-confluence-1-url.png), the size (as needed): ![iFrame: Size](images/gsheet-confluence-2-size.png),
+5. You should have a similar result as: ![iFrame](images/gsheet-confluence-3-iframe.png),
+6. These tedious steps has to be completed per each charts, but it's a one time operation! :information: I include `Predictability on Committed and Added PBIs`, `Predictability on Committed and Added Points` and `Added vs Removed` charts.
 
 # Microsoft Excel
 ## Transform the CSV formatted data
