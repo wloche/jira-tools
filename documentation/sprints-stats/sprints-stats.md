@@ -54,7 +54,8 @@ $ git clone https://github.com/wloche/jira-tools.git
 
 ## `config.js`
 1. Copy `classes/config-dist.js` and renamed it to `classes/config.js`
-2. Replace the values with your credentials and Jira domain name.
+2. Replace the values with your credentials and Jira domain name. Or set a `JIRA_URL` environment variable to your Jira organization's URL,
+   set a `JIRA_USERNAME` to your Jira username, and finally set `JIRA_PASSWORD` to your Jira password or API token (see below)
 3. If you are using a token: just put it in the `PASSWORD`. 🔗 [API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
 
 ```javascript
@@ -114,15 +115,11 @@ const teams = [ ];
 ```
 
 # Run
+Make sure your local enviroment has `JIRA_URL`, `JIRA_USERNAME` and `JIRA_PASSWORD` set appropriately first, then
+
 ## Docker
 ```shell
-# Build the image (once)
-docker build . -t wloche/jira-tools:latest
-# Install the node modules (once)
-docker run -v `pwd`:/usr/src/app -it --rm wloche/jira-tools:latest npm install
-
-# Run the scrip (each time you need!!)
-docker run -v `pwd`:/usr/src/app -it --rm wloche/jira-tools:latest
+docker-compose up
 ```
 
 ## Locally
