@@ -119,7 +119,7 @@ Make sure your local enviroment has `JIRA_URL`, `JIRA_USERNAME` and `JIRA_PASSWO
 
 ## Docker
 ```shell
-docker-compose up
+docker-compose up --no-log-prefix
 ```
 
 ## Locally
