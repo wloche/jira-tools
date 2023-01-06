@@ -4,7 +4,7 @@
 # docker run -v `pwd`:/usr/src/app -it --rm wloche/jira-tools:latest
 
 # https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
-FROM node:16
+FROM node:16-slim
 
 # Create app directory
 WORKDIR /usr/src/app

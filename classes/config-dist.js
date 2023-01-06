@@ -8,9 +8,9 @@
 
 const Config = {
     /* ###### Parameters to be updated ###### */
-    USER: '##USER##',
-    PASSWORD: '##PASSWORD##',
-    DOMAIN_NAME: 'https://##your-jira-server##',
+    USER: process.env.JIRA_USERNAME,
+    PASSWORD: process.env.JIRA_PASSWORD,
+    DOMAIN_NAME: process.env.JIRA_URL,
     BASE_URL_REST_V2: '/jira/rest/api/2/',
     // f.e. Matches SPA Sprint 6
     SPRINT_REG_EXP: /Sprint \d+/i,

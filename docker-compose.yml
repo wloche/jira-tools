@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  jira:
+    build: .
+    environment:
+      JIRA_USERNAME: ${JIRA_USERNAME}
+      JIRA_PASSWORD: ${JIRA_PASSWORD}
+      JIRA_URL: ${JIRA_URL}
+    volumes:
+      - "./:/usr/src/app/"
+    command: >
+     sh -c "
+      npm install &&
+      node sprints-stats.js
+     "
